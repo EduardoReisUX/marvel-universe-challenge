@@ -14,6 +14,7 @@ const api = axios.create({
     ts: TIME,
     apikey: PUBLIC_KEY,
     hash: HASH,
+    limit: 96,
   },
 });
 

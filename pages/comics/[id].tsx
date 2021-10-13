@@ -22,9 +22,12 @@ const Comics = (data) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { getDataById } = useGetData();
+  const { getDataByTagAndId } = useGetData();
 
-  const data: { data: {} } = await getDataById("comics", context.query.id);
+  const data: { data: {} } = await getDataByTagAndId(
+    "comics",
+    context.query.id
+  );
   return { props: data.data };
 };
 

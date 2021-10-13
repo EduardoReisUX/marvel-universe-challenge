@@ -1,33 +1,17 @@
 import api from "../../../pages/api";
 
 export const useGetData = () => {
-  const getCharacters = async () => {
+  const getDataByTagAndId = async (tag: string, id?: number) => {
     try {
-      const response = await api.get(`/characters`);
-      console.log(response.data);
-      return response.data;
-    } catch (err) {
-      console.log(err);
-      return err;
-    }
-  };
-
-  const getDataById = async (name: string, id: number) => {
-    try {
-      const response = await api.get(`/${name}/${id}`);
-      console.log(response.data);
-      return response.data;
-    } catch (err) {
-      console.log(err);
-      return err;
-    }
-  };
-
-  const searchCharacters = async (query: string) => {
-    try {
-      const response = await api.get(`/characters?nameStartsWith=${query}`);
-      console.log(response.data);
-      return response.data;
+      if (id === undefined) {
+        const responseTag = await api.get(`/${tag}`);
+        console.log(responseTag.data);
+        return responseTag.data;
+      } else {
+        const responseTagAndID = await api.get(`/${tag}/${id}`);
+        console.log(responseTagAndID.data);
+        return responseTagAndID.data;
+      }
     } catch (err) {
       console.log(err);
       return err;
@@ -35,8 +19,6 @@ export const useGetData = () => {
   };
 
   return {
-    getCharacters,
-    searchCharacters,
-    getDataById,
+    getDataByTagAndId,
   };
 };

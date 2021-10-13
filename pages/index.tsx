@@ -66,8 +66,7 @@ const Home: NextPage = (data: { results: [] }) => {
           )
         ) : (
           <>
-            <CircularProgress />
-            <Typography variant="h4">Loading...</Typography>
+            <List loading={loading} />
           </>
         )}
       </Container>
@@ -77,9 +76,9 @@ const Home: NextPage = (data: { results: [] }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { getCharacters } = useGetData();
+  const { getDataByTagAndId } = useGetData();
 
-  const data: { data: {} } = await getCharacters();
+  const data: { data: {} } = await getDataByTagAndId("characters");
   return {
     props: data.data,
   };
