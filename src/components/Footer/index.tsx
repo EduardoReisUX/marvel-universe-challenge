@@ -4,7 +4,7 @@ import { red } from "@mui/material/colors";
 const Footer = () => {
   return (
     <Typography
-      variant="h5"
+      variant="h6"
       sx={{
         paddingTop: 4,
         paddingBottom: 4,

@@ -3,7 +3,7 @@ import api from "../../../pages/api";
 export const useGetData = () => {
   const getDataByTagAndId = async (tag: string, id?: number) => {
     try {
-      if (id === undefined) {
+      if (id === undefined || null) {
         const responseTag = await api.get(`/${tag}`);
         console.log(responseTag.data);
         return responseTag.data;

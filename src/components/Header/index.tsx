@@ -1,20 +1,21 @@
 import { Typography } from "@mui/material";
 import { HeaderContainer } from "./styles";
+import { NavBar } from "../Navbar";
 
-const Header: React.FC = ({ ...props }) => {
+const Header: React.FC = () => {
   return (
     <HeaderContainer>
       <Typography
-        variant="h1"
+        variant="h3"
         sx={{
-          paddingTop: 8,
-          paddingBottom: 8,
+          paddingTop: 4,
+          paddingBottom: 4,
           textAlign: "center",
         }}
       >
         Marvel Universe
       </Typography>
-      {props.children}
+      <NavBar />
     </HeaderContainer>
   );
 };

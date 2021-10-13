@@ -4,28 +4,30 @@ import { Typography } from "@mui/material";
 import Link from "next/link";
 
 interface dataProps {
-  name: string;
+  id: number;
+  title: string;
   description?: string;
   thumbnail: {
     path: string;
     extension: string;
   };
-  comics: {
-    name: string;
-    available: number;
-    items: {}[];
-  }[];
 
-  series: {
-    name: string;
+  characters: {
     available: number;
-    items: {}[];
-  }[];
+    collectionURI: string;
+    items: {
+      resourceURI: string;
+      name: string;
+    }[];
+  };
 
   stories: {
     name: string;
     available: number;
-    items: {}[];
+    items: {
+      resourceURI: string;
+      name: string;
+    }[];
   }[];
 
   events: {
@@ -35,8 +37,9 @@ interface dataProps {
   }[];
 }
 
-export const Details = (data: { data: { results: Object[] } }) => {
+export const ComicDetails = (data: { data: { results: Object[] } }) => {
   const detailsData: dataProps = data.data.results[0];
+
   return (
     <>
       <Card
@@ -56,7 +59,7 @@ export const Details = (data: { data: { results: Object[] } }) => {
         >
           <CardContent sx={{ flex: "1 0 auto" }}>
             <Typography component="div" variant="h5" gutterBottom>
-              {detailsData.name}
+              {detailsData.title}
             </Typography>
             <Typography
               variant="subtitle1"
@@ -73,22 +76,25 @@ export const Details = (data: { data: { results: Object[] } }) => {
           component="img"
           sx={{ width: "25%" }}
           image={`${detailsData.thumbnail.path}.${detailsData.thumbnail.extension}`}
-          alt={`${detailsData.name}`}
+          alt={`${detailsData.title}`}
         />
       </Card>
 
-      <Typography variant="h4" gutterBottom>
-        Comics ({detailsData.comics.available})
+      <Typography variant="h6">
+        Characters ({detailsData.characters.available})
       </Typography>
-      {!detailsData.comics ? (
-        <Typography>{detailsData.name} doesn't have any comics...</Typography>
+      {detailsData.characters.available === 0 ? (
+        <Typography gutterBottom>
+          {detailsData.title} doesn't have any characters registered in Marvel's
+          API...
+        </Typography>
       ) : (
-        detailsData.comics.items.map(({ resourceURI, name }) => (
+        detailsData.characters.items.map(({ resourceURI, name }) => (
           <List>
             <ListItem key={resourceURI.match(/\d+$/)[0]}>
               <Link
-                href="/comics/[id]"
-                as={`/comics/${resourceURI.match(/\d+$/)[0]}`}
+                href="/detail/[id]"
+                as={`/detail/${resourceURI.match(/\d+$/)[0]}`}
               >
                 {name}
               </Link>
@@ -97,31 +103,13 @@ export const Details = (data: { data: { results: Object[] } }) => {
         ))
       )}
 
-      <Typography variant="h4" gutterBottom>
-        Series ({detailsData.series.available})
-      </Typography>
-      {!detailsData.series ? (
-        <Typography>{detailsData.name} doesn't have any series...</Typography>
-      ) : (
-        detailsData.series.items.map(({ resourceURI, name }) => (
-          <List>
-            <ListItem key={resourceURI.match(/\d+$/)[0]}>
-              <Link
-                href="/series/[id]"
-                as={`/series/${resourceURI.match(/\d+$/)[0]}`}
-              >
-                {name}
-              </Link>
-            </ListItem>
-          </List>
-        ))
-      )}
-
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h6">
         Stories ({detailsData.stories.available})
       </Typography>
-      {!detailsData.stories ? (
-        <Typography>{detailsData.name} doesn't have any stories...</Typography>
+      {detailsData.stories.available === 0 ? (
+        <Typography gutterBottom>
+          {detailsData.title} isn't included in any stories...
+        </Typography>
       ) : (
         detailsData.stories.items.map(({ resourceURI, name }) => (
           <List>
@@ -137,11 +125,13 @@ export const Details = (data: { data: { results: Object[] } }) => {
         ))
       )}
 
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h6">
         Events ({detailsData.events.available})
       </Typography>
       {detailsData.events.available === 0 ? (
-        <Typography>{detailsData.name} doesn't have any events...</Typography>
+        <Typography gutterBottom>
+          {detailsData.title} isn't included at any events...
+        </Typography>
       ) : (
         detailsData.events.items.map(({ resourceURI, name }) => (
           <List>

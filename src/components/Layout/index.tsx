@@ -1,12 +1,12 @@
 import Header from "../Header";
 import Footer from "../Footer";
-import React from "react";
+import { Container } from "@mui/material";
 
 const Layout = ({ children }) => {
   return (
     <>
       <Header />
-      {children}
+      <Container maxWidth="lg">{children}</Container>
       <Footer />
     </>
   );

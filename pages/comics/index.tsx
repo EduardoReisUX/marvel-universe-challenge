@@ -1,9 +1,7 @@
 import { Container } from "@mui/material";
-import { red } from "@mui/material/colors";
 import { GetServerSideProps } from "next";
-import Header from "../../src/components/Header";
-import { NavBar } from "../../src/components/Navbar";
-import { List } from "../../src/components/List";
+
+import { ComicsList } from "../../src/components/List/ComicsList";
 import { useGetData } from "../../src/data/hooks";
 
 const Comics = (data: { results: [] }) => {
@@ -11,13 +9,7 @@ const Comics = (data: { results: [] }) => {
 
   return (
     <>
-      <Header>
-        <NavBar />
-      </Header>
-
-      <Container maxWidth="lg" sx={{ bgColor: red[100] }}>
-        <List results={axiosFetchResults} />
-      </Container>
+      <ComicsList results={axiosFetchResults} />
     </>
   );
 };

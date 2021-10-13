@@ -7,6 +7,5 @@ export const ListContainer = styled("div")({
   flexWrap: "wrap",
   alignItems: "center",
   justifyContent: "center",
-  backgroundColor: red[50],
   padding: `0`,
 });
