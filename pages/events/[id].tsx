@@ -1,12 +1,11 @@
-import { CharacterDetails } from "../../src/components/Details/CharacterDetails";
-
 import { useGetData } from "../../src/data/hooks";
 import { GetServerSideProps } from "next";
+import { EventDetails } from "../../src/components/Details/EventDetails";
 
-const Detail = (data) => {
+const Events = (data) => {
   return (
     <>
-      <CharacterDetails data={data} />
+      <EventDetails data={data} />
     </>
   );
 };
@@ -15,10 +14,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { getDataByTagAndId } = useGetData();
 
   const data: { data: {} } = await getDataByTagAndId(
-    "characters",
+    "events",
     context.query.id
   );
   return { props: data.data };
 };
 
-export default Detail;
+export default Events;

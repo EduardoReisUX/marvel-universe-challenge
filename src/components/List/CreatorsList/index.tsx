@@ -22,7 +22,6 @@ interface dataProps {
 }
 
 export const CreatorsList = (data: { results?: dataProps[] }) => {
-  console.log(data);
   return (
     <>
       <ListContainer>

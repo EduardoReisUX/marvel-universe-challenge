@@ -13,9 +13,6 @@ export const NavBar = () => {
           <Link href="/comics">Comics</Link>
         </Typography>
         <Typography variant="h6" component="div">
-          <Link href="/creators">Creators</Link>
-        </Typography>
-        <Typography variant="h6" component="div">
           <Link href="/events">Events</Link>
         </Typography>
         <Typography variant="h6" component="div">

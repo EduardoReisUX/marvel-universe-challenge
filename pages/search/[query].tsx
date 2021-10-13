@@ -22,7 +22,6 @@ const Detail = (data) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { getDataByTagAndId } = useGetData();
-  console.log(context);
 
   const data: { data: {} } = await getDataByTagAndId(
     "characters",

@@ -3,8 +3,6 @@ import { GetServerSideProps } from "next";
 import { ComicDetails } from "../../src/components/Details/ComicDetails";
 
 const Comics = (data) => {
-  console.log(data);
-
   return (
     <>
       <ComicDetails data={data} />

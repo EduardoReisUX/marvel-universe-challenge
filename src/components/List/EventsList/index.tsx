@@ -22,12 +22,12 @@ interface dataProps {
   };
 }
 
-export const ComicsList = (data: { results?: dataProps[] }) => {
+export const EventsList = (data: { results?: dataProps[] }) => {
   return (
     <>
       <ListContainer>
         <Typography variant="h3" gutterBottom sx={{ marginTop: 2 }}>
-          Comics
+          Events
         </Typography>
       </ListContainer>
       <ListContainer>
@@ -61,14 +61,14 @@ export const ComicsList = (data: { results?: dataProps[] }) => {
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     {!description
-                      ? "This comic doesn't have a description."
+                      ? "This event doesn't have a description."
                       : `${description.split(" ").slice(0, 11).join(" ")}...`}
                   </Typography>
                 </CardContent>
 
                 <CardActions sx={{ alignSelf: "flex-end" }}>
                   <Button size="small">
-                    <Link href="/comics/[id]" as={`/comics/${id}`}>
+                    <Link href="/events/[id]" as={`/events/${id}`}>
                       Learn More
                     </Link>
                   </Button>
