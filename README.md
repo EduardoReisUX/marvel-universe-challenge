@@ -1,6 +1,12 @@
 # Desafio Pedido Pago: Marvel Universe
 
-### Como instalar e rodar na própria máquina:
+## Descrição do projeto
+
+Este projeto consome a API pública da Marvel e lista informações como characters, comics, events, etc.
+
+Construído com Nextjs e TypeScript, os requests são feitos com Axios configurado para utilizar a key dentro de `.env.local` e a UI foi feita com Material-ui.
+
+## Como instalar e rodar na própria máquina:
 
 - `git clone https://github.com/EduardoReisUX/marvel-universe-challenge.git`
 - `yarn install`
