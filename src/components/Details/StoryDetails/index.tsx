@@ -30,6 +30,20 @@ interface dataProps {
     }[];
   }[];
 
+  comics: {
+    available: number;
+    items: {
+      resourceURI: string;
+      name: string;
+    }[];
+  }[];
+
+  creators: {
+    name: string;
+    available: number;
+    items: {}[];
+  }[];
+
   events: {
     name: string;
     available: number;
@@ -37,7 +51,7 @@ interface dataProps {
   }[];
 }
 
-export const ComicDetails = (data: { data: { results: Object[] } }) => {
+export const StoryDetails = (data: { data: { results: Object[] } }) => {
   const detailsData: dataProps = data.data.results[0];
   console.log(detailsData);
 
@@ -68,17 +82,11 @@ export const ComicDetails = (data: { data: { results: Object[] } }) => {
               component="div"
             >
               {!detailsData.description
-                ? "This character, sadly, doesn't have any description about him on Marvel's API. You can check the list of comics, series, events the he/she participated down below."
+                ? "This story, sadly, doesn't have any description about it on Marvel's API. You can check the list of characters, creators, comics and events down below."
                 : detailsData.description}
             </Typography>
           </CardContent>
         </Box>
-        <CardMedia
-          component="img"
-          sx={{ width: "25%" }}
-          image={`${detailsData.thumbnail.path}.${detailsData.thumbnail.extension}`}
-          alt={`${detailsData.title}`}
-        />
       </Card>
 
       <Typography variant="h6">
@@ -86,8 +94,7 @@ export const ComicDetails = (data: { data: { results: Object[] } }) => {
       </Typography>
       {detailsData.characters.available === 0 ? (
         <Typography gutterBottom>
-          {detailsData.title} doesn't have any characters registered in Marvel's
-          API...
+          This story doesn't have any characters registered in Marvel's API...
         </Typography>
       ) : (
         detailsData.characters.items.map(({ resourceURI, name }) => (
@@ -105,19 +112,19 @@ export const ComicDetails = (data: { data: { results: Object[] } }) => {
       )}
 
       <Typography variant="h6">
-        Stories ({detailsData.stories.available})
+        Comics ({detailsData.comics.available})
       </Typography>
-      {detailsData.stories.available === 0 ? (
+      {detailsData.comics.available === 0 ? (
         <Typography gutterBottom>
-          {detailsData.title} isn't included in any stories...
+          This story doesn't have any comics registered in Marvel's API...
         </Typography>
       ) : (
-        detailsData.stories.items.map(({ resourceURI, name }) => (
+        detailsData.comics.items.map(({ resourceURI, name }) => (
           <List>
             <ListItem key={resourceURI.match(/\d+$/)[0]}>
               <Link
-                href="/stories/[id]"
-                as={`/stories/${resourceURI.match(/\d+$/)[0]}`}
+                href="/comics/[id]"
+                as={`/comics/${resourceURI.match(/\d+$/)[0]}`}
               >
                 {name}
               </Link>
@@ -131,7 +138,7 @@ export const ComicDetails = (data: { data: { results: Object[] } }) => {
       </Typography>
       {detailsData.events.available === 0 ? (
         <Typography gutterBottom>
-          {detailsData.title} isn't included at any events...
+          This story isn't included in any events...
         </Typography>
       ) : (
         detailsData.events.items.map(({ resourceURI, name }) => (
@@ -140,6 +147,28 @@ export const ComicDetails = (data: { data: { results: Object[] } }) => {
               <Link
                 href="/events/[id]"
                 as={`/events/${resourceURI.match(/\d+$/)[0]}`}
+              >
+                {name}
+              </Link>
+            </ListItem>
+          </List>
+        ))
+      )}
+
+      <Typography variant="h6">
+        Creators ({detailsData.creators.available})
+      </Typography>
+      {detailsData.creators.available === 0 ? (
+        <Typography gutterBottom>
+          No creators participated at this story...
+        </Typography>
+      ) : (
+        detailsData.creators.items.map(({ resourceURI, name }) => (
+          <List>
+            <ListItem key={resourceURI.match(/\d+$/)[0]}>
+              <Link
+                href="/creators/[id]"
+                as={`/creators/${resourceURI.match(/\d+$/)[0]}`}
               >
                 {name}
               </Link>
