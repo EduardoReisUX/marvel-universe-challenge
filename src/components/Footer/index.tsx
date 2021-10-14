@@ -9,10 +9,12 @@ const Footer = () => {
         paddingTop: 4,
         paddingBottom: 4,
         textAlign: "center",
-        backgroundColor: red[200],
+        backgroundColor: red[100],
       }}
     >
-      Created by Dudu for the Pedido Pago Challenge.
+      {`Feito com ♥ por Eduardo para o desafio do Pedido Pago.
+      
+      @github: https://github.com/EduardoReisUX/marvel-universe-challenge`}
     </Typography>
   );
 };
