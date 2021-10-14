@@ -22,12 +22,12 @@ interface dataProps {
   };
 }
 
-export const EventsList = (data: { results?: dataProps[] }) => {
+export const SeriesList = (data: { results?: dataProps[] }) => {
   return (
     <>
       <ListContainer>
         <Typography variant="h3" gutterBottom sx={{ marginTop: 2 }}>
-          Events
+          Series
         </Typography>
       </ListContainer>
       <ListContainer>
@@ -44,7 +44,7 @@ export const EventsList = (data: { results?: dataProps[] }) => {
                 }}
               >
                 <CardActionArea>
-                  <Link href="/events/[id]" as={`/events/${id}`}>
+                  <Link href="/series/[id]" as={`/series/${id}`}>
                     <CardMedia
                       key={id}
                       component="img"
@@ -68,7 +68,7 @@ export const EventsList = (data: { results?: dataProps[] }) => {
 
                 <CardActions sx={{ alignSelf: "flex-end" }}>
                   <Button size="small">
-                    <Link href="/events/[id]" as={`/events/${id}`}>
+                    <Link href="/series/[id]" as={`/series/${id}`}>
                       Learn More
                     </Link>
                   </Button>
