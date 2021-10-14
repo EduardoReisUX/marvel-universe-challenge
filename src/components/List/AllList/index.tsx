@@ -24,7 +24,6 @@ interface dataProps {
 }
 
 export const AllList = (data: { data: { results?: dataProps[] } }) => {
-  console.log(data);
   return (
     <>
       <ListContainer>

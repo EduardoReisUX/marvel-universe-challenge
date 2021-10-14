@@ -23,7 +23,6 @@ interface dataProps {
 }
 
 export const StoriesList = (data: { results?: dataProps[] }) => {
-  console.log(data);
   return (
     <>
       <ListContainer>

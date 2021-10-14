@@ -53,7 +53,6 @@ interface dataProps {
 
 export const SerieDetails = (data: { data: { results: Object[] } }) => {
   const detailsData: dataProps = data.data.results[0];
-  console.log(detailsData);
 
   return (
     <>

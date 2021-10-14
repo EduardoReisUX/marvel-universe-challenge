@@ -39,7 +39,6 @@ interface dataProps {
 
 export const ComicDetails = (data: { data: { results: Object[] } }) => {
   const detailsData: dataProps = data.data.results[0];
-  console.log(detailsData);
 
   return (
     <>

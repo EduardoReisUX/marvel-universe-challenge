@@ -53,7 +53,6 @@ interface dataProps {
 
 export const StoryDetails = (data: { data: { results: Object[] } }) => {
   const detailsData: dataProps = data.data.results[0];
-  console.log(detailsData);
 
   return (
     <>
